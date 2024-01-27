@@ -1,0 +1,58 @@
+{% load static %}
+<div id="call" aria-hidden="true" class="popup">
+    <div class="popup__wrapper">
+        <div class="popup__content">
+            <button data-close type="button" class="popup__close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18" stroke="black" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="popup__body">
+                <strong class="popup__title">Оставить заявку</strong>
+                <p class="popup__descr">Перезвоним Вам в ближайшее время</p>
+                <form action="" method="post" class="popup__form site-form"
+                      data-dev data-popup-message="#form-message" autocomplete="off">
+                    {% csrf_token %}
+                    <label for="popupName" class="popup__label">
+                        <input id="popupName" type="text" name="name" data-error="Поле не заполнено!"
+                               data-required="text" autocomplete="off" placeholder="Имя" class="popup__input">
+                    </label>
+                    <label for="popupTel" class="popup__label">
+                        <input id="popupTel" type="text" name="phone" data-error="Поле не заполнено!"
+                               data-required="phone" placeholder="+7(000)000-00-00" class="popup__input">
+                    </label>
+                    <button type="submit" class="popup__button btn-blue">Заказать звонок</button>
+                    <div class="popup__checkbox checkbox-form">
+                        <input id="checkBoxPopup" value="1" data-error="Требуется поставить галочку!"
+                               data-required="checkbox" type="checkbox" class="checkbox-form__input" checked
+                               name="form[]">
+                        <label for="checkBoxPopup" class="checkbox-form__label">
+                            <span class="checkbox-form__text">Нажимая на кнопку, вы даете согласие на <a href="#">обработку персональных данных</a></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="form-message" aria-hidden="true" class="popup">
+    <div class="popup__wrapper">
+        <div class="popup__content">
+            <button data-close type="button" class="popup__close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18" stroke="black" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="popup__body">
+                Сообщение успешно отправлено
+            </div>
+        </div>
+    </div>
+</div>

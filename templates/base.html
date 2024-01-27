@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" xmlns:xlink="http://www.w3.org/2000/svg">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}Manage app{% endblock %}</title>
+    <meta name="description" content="{% block description %}Manage app{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/lazysize.min.js' %}"></script>
+    <script defer src="{% static 'js/app.js' %}"></script>
+    <script defer src="{% static 'js/fancybox.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fancybox.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="canonical" href="{% block canonical %}https://megaseller.ru/{% endblock %}"/>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noyaca"/>
+    <meta name="robots" content="noodp"/>
+</head>
+<body>
+<div class="wrapper">
+    {% include "svg.html" %}
+    {% block header %}
+        {% include "header.html" %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+    {% block sticker %}
+        {% include "sticker.html" %}
+    {% endblock %}
+    {% block footer %}
+{#        {% include "footer.html" %}#}
+    {% endblock %}
+</div>
+{% block popups %}
+    {% include "popups.html" %}
+    {% include "exitpopup.html" %}
+{% endblock %}
+</body>
+</html>

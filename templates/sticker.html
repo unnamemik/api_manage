@@ -1,0 +1,444 @@
+{% load static %}
+<!-- sticker-->
+<div class="menu_container">
+    <div class="scroll_menu_outher show">
+        <div class="scroll_menu">
+            <div class="scroll_menu_left">
+            </div>
+            <div class="scroll_menu_right">
+                <div class="scroll_menu_item contact_button">
+                    <img style="max-width: 50px;" src="{% static 'img/icons/telegram.webp' %}" alt="telegram icon">
+                    <img style="max-width: 50px;" src="{% static 'img/icons/whatsapp.webp' %}" alt="whatsapp icon">
+                    <img style="max-width: 50px;" src="{% static 'img/icons/phone-green.webp' %}" alt="phone icon">
+                </div>
+            </div>
+        </div>
+        <div class="scroll_menu_contact_block">
+            <div class="scroll_menu_contact_block_left">
+                <a href="tel:+79891460099"
+                   class="scroll_menu_contact_block_left_item city_phone">+7 (989) 146-00-99</a>
+            </div>
+            <div class="scroll_menu_contact_block_right">
+                <a target="_blank" href="https://t.me/D_dima0"
+                    class="scroll_menu_contact_block_right_item">Telegram</a>
+                <a target="_blank" href="whatsapp://send?phone=+79891460099"
+                   class="scroll_menu_contact_block_right_item">WhatsApp</a>
+            </div>
+        </div>
+        <div class="scroll_menu_mobile_contact_block">
+            <div class="scroll_menu_mobile_contact_block_header">
+                <span
+                    class="scroll_menu_mobile_contact_block_header_title">Свяжитесь с нами</span>
+                <div class="scroll_menu_mobile_contact_block_header_close"></div>
+            </div>
+            <div class="scroll_menu_mobile_contact_block_list">
+                <a target="_blank" href="tel:+79891460099"
+                   class="scroll_menu_mobile_contact_block_list_item scroll_menu_mobile_contact_block_list_number city_phone">
+                    +7 (989) 146-00-99 </a>
+                <a target="_blank" href="https://t.me/D_dima0" class="scroll_menu_mobile_contact_block_list_item">
+                    <img alt="Telegram" src="{% static 'img/icons/telegram.webp' %}">
+                    Telegram
+                </a>
+                <a target="_blank" href="whatsapp://send?phone=+79891460099" class="scroll_menu_mobile_contact_block_list_item">
+                    <img alt="WhatsApp" src="{% static 'img/icons/whatsapp.webp' %}">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /sticker-->
+
+<style>
+    body .scroll_menu_outher {
+        bottom: 0;
+        height: 70px
+    }
+
+    body .scroll_menu_right .mobile_contact_button {
+        display: block;
+        width: 75px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        background-color: #f4f0ed;
+        box-shadow: 0px 1px 4px rgba(0,0,0,.25);
+        cursor: pointer
+    }
+
+    body .scroll_menu_right .mobile_contact_button img {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px
+    }
+
+    body .scroll_menu_right .mobile_contact_button img:last-child {
+        margin-right: 0
+    }
+
+    .scroll_menu {
+        max-width: calc(100vw - 64px)
+    }
+
+    body .scroll_menu_mobile_contact_block {
+        -webkit-transition: all .15s ease-out;
+        -moz-transition: all .15s ease-out;
+        -o-transition: all .15s ease-out;
+        transition: all .15s ease-out;
+        width: 100%;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translate(0,100%);
+        background: #fff;
+        box-shadow: 6px -1px 10px rgba(0,0,0,.08);
+        border-radius: 12px 12px 0 0;
+        z-index: 1;
+        padding: 30px
+    }
+
+    body .scroll_menu_mobile_contact_block.show {
+        transform: translate(0,0)
+    }
+
+    body .scroll_menu_mobile_contact_block_header {
+        width: 100%;
+        padding-bottom: 40px;
+        display: flex;
+        justify-content: space-between
+    }
+
+    body .scroll_menu_mobile_contact_block_header_close {
+        height: 1em;
+        width: 1em;
+        background-image:  url(../static/img/close.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        cursor: pointer
+    }
+
+    body .scroll_menu_mobile_contact_block_list {
+        display: flex;
+        flex-direction: column;
+        width: 100%
+    }
+
+    body .scroll_menu_mobile_contact_block_list_item {
+        background: #9bf0f5;
+        border-radius: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 15px;
+        border: none;
+        color: #333;
+        height: 52px;
+        margin-bottom: 10px;
+        background-color: #f4f0ed;
+        position: relative
+    }
+
+    body .scroll_menu_mobile_contact_block_list_item img {
+        max-width: 50px;
+        position: absolute;
+        left: 20px
+    }
+
+    body .scroll_menu_mobile_contact_block_list_number {
+        font-size: 18px;
+        background-color: #9bf0f5
+    }
+
+
+    .scroll_menu_outher {
+        max-width: 1200px;
+        width: 100%;
+        height: 65px;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, calc(100% + 20px));
+        display: flex;
+        align-items: flex-end;
+        opacity: .5;
+        z-index: 2
+    }
+
+    .scroll_menu_outher.show {
+        transform: translate(-50%, 0);
+        opacity: 1
+    }
+
+    .scroll_menu_outher.transition {
+        -webkit-transition: all .2s ease-out;
+        -moz-transition: all .2s ease-out;
+        -o-transition: all .2s ease-out;
+        transition: all .2s ease-out
+    }
+
+    .scroll_menu {
+        font-size: 18px;
+        width: 100%;
+        margin: auto;
+        max-width: calc(100vw - 40px);
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 100px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, .25);
+        background-color: #fff;
+        z-index: 1
+    }
+
+    .scroll_menu > * {
+        height: 100%;
+        display: flex;
+        align-items: center
+    }
+
+    .scroll_menu .scroll_menu_link {
+        height: 100%;
+        padding: 0 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 300;
+        border-radius: 30px;
+        background: #333;
+        color: #fff
+    }
+
+    .scroll_menu .scroll_menu_item {
+        -webkit-transition: all .2s linear;
+        -moz-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 16px
+    }
+
+    .scroll_menu .scroll_menu_item.others {
+        opacity: .4
+    }
+
+    .scroll_menu_right .scroll_menu_item {
+        margin-right: 94px
+    }
+
+    .scroll_menu_right .scroll_menu_item.contact_button {
+        margin-right: 0
+    }
+
+    .scroll_menu_right .mobile_contact_button {
+        display: none
+    }
+
+    .scroll_menu_right .scroll_menu_item.contact_button {
+        display: flex;
+        padding-right: 40px
+    }
+
+    .scroll_menu_right .scroll_menu_item.contact_button img {
+        margin-right: 4px
+    }
+
+    .scroll_menu_right .scroll_menu_item.contact_button img:last-child {
+        margin-right: 0
+    }
+
+    .scroll_menu_mobile_contact_block {
+        display: none
+    }
+
+    .scroll_menu_contact_block {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 0;
+        background-color: #fff;
+        border-radius: 100px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, .25)
+    }
+
+    .scroll_menu_contact_block.show {
+        bottom: 65px;
+        opacity: 1
+    }
+
+    .scroll_menu_contact_block.transition {
+        -webkit-transition: all .2s ease-out;
+        -moz-transition: all .2s ease-out;
+        -o-transition: all .2s ease-out;
+        transition: all .2s ease-out
+    }
+
+    .scroll_menu_contact_block_left_item {
+        font-size: 26px
+    }
+
+    .scroll_menu_contact_block_right_item {
+        font-size: 15px;
+        margin-right: 36px
+    }
+
+    .scroll_menu_contact_block_right_item:last-child {
+        margin-right: 0
+    }
+
+    @media (min-width: 768px) {
+        .menu_container {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body .scroll_menu {
+            height: 100%;
+            flex-direction: row-reverse;
+            border-radius: 0;
+            box-shadow: none;
+            background: 0 0;
+            max-width: calc(100vw - 56px)
+        }
+
+        body .scroll_menu > * {
+            align-items: flex-start;
+            margin-left: 8px
+        }
+
+        body .scroll_menu > *:last-child {
+            margin-left: 0
+        }
+
+        body .scroll_menu_left {
+            flex: 1
+        }
+
+        body .scroll_menu_left .scroll_menu_link {
+            width: 100%;
+            height: 40px;
+            font-size: 14px;
+            font-weight: 400;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, .25);
+            padding: 0 29px
+        }
+
+        .scroll_menu_right .scroll_menu_item.contact_button img {
+            width: 24px;
+            height: 24px
+        }
+
+        body .scroll_menu_left .scroll_menu_link:before {
+            content: "→";
+            margin-right: 5px
+        }
+
+        body .scroll_menu_right .scroll_menu_item {
+            display: none
+        }
+
+        .scroll_menu_right .scroll_menu_item.contact_button {
+            background: #fff;
+            border-radius: 100px;
+            justify-content: center;
+            height: 40px;
+            align-items: center;
+            padding: 0 10px;
+            box-shadow: 0 1px 4px rgb(0 0 0/25%)
+        }
+    }
+</style>
+
+<script>
+    window.width_mobile = 768;
+    $(document).ready(function () {
+        // Menu //
+        if (document.querySelector('.menu_container')) {
+            function scrollMenu(display = 'auto') {
+                if (document.querySelector('.scroll_menu_outher')) {
+                    {#console.log('scroll')#}
+                }
+            }
+
+            window.scrollMenu = scrollMenu
+
+            if (document.querySelector('.scroll_menu_outher')) {
+                scrollMenu()
+                document.querySelector('.scroll_menu_outher').classList.add('transition');
+                window.addEventListener('scroll', function () {
+                    scrollMenu();
+                });
+                for (i = 0; i < document.querySelectorAll('.scroll_menu_item').length; i++) {
+                    document.querySelectorAll('.scroll_menu_item')[i].addEventListener('mouseover', function () {
+                        for (j = 0; j < document.querySelectorAll('.scroll_menu_item').length; j++) {
+                            document.querySelectorAll('.scroll_menu_item')[j].classList.add('others');
+                        }
+                        this.classList.remove('others');
+                    });
+                    document.querySelectorAll('.scroll_menu_item')[i].addEventListener('mouseout', function () {
+                        for (j = 0; j < document.querySelectorAll('.scroll_menu_item').length; j++) {
+                            document.querySelectorAll('.scroll_menu_item')[j].classList.remove('others');
+                        }
+                    });
+                }
+
+                document.querySelector('.scroll_menu_item.contact_button').onclick = function () {
+                    if ($(window).width() <= 768) {
+                        document.querySelector('.scroll_menu_mobile_contact_block').classList.add('show')
+                    }
+                };
+                document.querySelector('.scroll_menu_mobile_contact_block_header_close').onclick = function () {
+                    document.querySelector('.scroll_menu_mobile_contact_block').classList.remove('show')
+                };
+                document.querySelector('.scroll_menu_item.contact_button').addEventListener('mouseover', function () {
+                    if ($(window).width() > 768) {
+                        document.querySelector('.scroll_menu_contact_block').style.display = 'flex';
+                        document.querySelector('.scroll_menu_contact_block').classList.add('transition');
+                        setTimeout(function () {
+                            document.querySelector('.scroll_menu_contact_block').classList.add('show')
+                        }, 10);
+
+                        function hideContactBlock() {
+                            document.querySelector('.scroll_menu_contact_block').classList.remove('show');
+                        }
+
+                        document.querySelector('header').onmouseover = function () {
+                            hideContactBlock()
+                        };
+                        document.querySelector('main').onmouseover = function () {
+                            hideContactBlock()
+                        };
+                        document.querySelector('footer').onmouseover = function () {
+                            hideContactBlock()
+                        };
+
+                        for (i = 0; i < document.querySelectorAll('.scroll_menu_item').length; i++) {
+                            if (!(document.querySelectorAll('.scroll_menu_item')[i].classList.contains('contact_button'))) {
+                                document.querySelectorAll('.scroll_menu_item')[i].addEventListener('mouseover', function () {
+                                    hideContactBlock()
+                                });
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    })
+</script>
