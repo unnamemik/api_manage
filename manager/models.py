@@ -14,14 +14,15 @@ class SiteSettings(models.Model):
 
     project_name = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Имя проекта')
     domain_name = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Домен')
-    region = models.TextField(default=' ', null=True, blank=True, verbose_name='Регион')
+    region_what = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Регион, им. падеж')
+    region_where = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Регион, род. падеж')
 
     document_head = models.TextField(default=' ', null=True, blank=True, verbose_name='Блок head')
     document_body = models.TextField(default=' ', null=True, blank=True, verbose_name='Блок body')
     document_footer = models.TextField(default=' ', null=True, blank=True, verbose_name='Блок footer')
 
-    main_page_title = models.TextField(default=' ', null=True, blank=True, verbose_name='Title')
-    main_page_description = models.TextField(default=' ', null=True, blank=True, verbose_name='Description')
+    main_page_title = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Title')
+    main_page_description = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Description')
     main_page_canonical = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Canonical')
 
     contacts_address = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Адрес')
@@ -52,7 +53,7 @@ class SiteSettings(models.Model):
 
     class Meta:
         verbose_name = 'Настройки сайта'
-        verbose_name_plural = 'Настройки сайта'
+        verbose_name_plural = 'Настройки сайтов'
         ordering = ['-domain_name']
         db_table = 'project'
 

@@ -9,10 +9,10 @@ def api_set():
     data = {
         "project_name": "potolki_template",
         "domain_name": "natyajnye-potolki.pro",
-        "region": [
-            "Мурманск",
-            "Мурманске"
-        ],
+        "region_": {
+            "what": "Мурманск",
+            "where": "Мурманске"
+        },
         "document_": {
             "head": "<meta name=\"robots\" content=\"noindex, nofollow\"/>",
             "body": "",

@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: *
+Disallow: /?*
+Disallow: /api/*
+Disallow: /rest_api/*
+Disallow: /privacy/
+Disallow: /feedback/
+Disallow: /unnamemik/
+
+User-agent: GPTBot
+Disallow: /

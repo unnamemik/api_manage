@@ -34,7 +34,10 @@ def site_update(modeladmin, request, queryset):
         data = {
             "project_name": site_settings.project_name,
             "domain_name": site_settings.domain_name,
-            "region": site_settings.region.split(),
+            "region_": {
+                "what": site_settings.region_what,
+                "where": site_settings.region_where
+            },
             "document_": {
                 "head": site_settings.document_head,
                 "body": site_settings.document_body,
@@ -89,7 +92,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Основное', {
             'fields': (
-                'user_name', 'user_pass', 'token', 'project_name', 'domain_name', 'region')
+                'user_name', 'user_pass', 'token', 'project_name', 'domain_name', 'region_what', 'region_where')
         }),
         ('Поля страниц', {
             'classes': ['collapse in', ],
