@@ -79,13 +79,61 @@ def site_update(modeladmin, request, queryset):
         requests.post(url_auth, data=data, cookies=cookies, headers=headers)
 
 
+@admin.action(description='Скачать настройки с сайта')
+def db_update(modeladmin, request, queryset):
+    for site in queryset:
+        site_settings = SiteSettings.objects.filter(pk=site.pk).first()
+
+        url_auth = f'https://{site_settings.domain_name}/rest_api/'
+        token = site_settings.token
+
+        cookies = {}
+        headers = {'Authorization': token}
+        data = json.loads(requests.get(url_auth, cookies=cookies, headers=headers).text)
+
+        db_from_json_update(site_settings, data)
+
+
+def db_from_json_update(site_settings, data):
+    site_settings.project_name = data["project_name"]
+    site_settings.domain_name = data["domain_name"]
+    site_settings.region_what = data["region_"]["what"]
+    site_settings.region_where = data["region_"]["where"]
+    site_settings.document_head = data["document_"]["head"]
+    site_settings.document_body = data["document_"]["body"]
+    site_settings.document_footer = data["document_"]["footer"]
+    site_settings.main_page_title = data["main_page_"]["title"]
+    site_settings.main_page_description = data["main_page_"]["description"]
+    site_settings.main_page_canonical = data["main_page_"]["canonical"]
+    site_settings.contacts_address = data["contacts_"]["address"]
+    site_settings.contacts_name = data["contacts_"]["name"]
+    site_settings.contacts_tel = data["contacts_"]["tel"]
+    site_settings.contacts_tel_formatted = data["contacts_"]["tel_formatted"]
+    site_settings.contacts_whatsapp = data["contacts_"]["whatsapp"]
+    site_settings.contacts_whatsapp_formatted = data["contacts_"]["whatsapp_formatted"]
+    site_settings.contacts_telegram = data["contacts_"]["telegram"]
+    site_settings.contacts_telegram_formatted = data["contacts_"]["telegram_formatted"]
+    site_settings.contacts_email = data["contacts_"]["email"]
+    site_settings.contacts_email_formatted = data["contacts_"]["email_formatted"]
+    site_settings.contacts_map = data["contacts_"]["map"]
+    site_settings.contacts_map_mobile = data["contacts_"]["map_mobile"]
+    site_settings.requisites_company = data["requisites_"]["company"]
+    site_settings.requisites_inn = data["requisites_"]["inn"]
+    site_settings.requisites_work_hours = data["requisites_"]["work_hours"]
+    site_settings.requisites_ogrn = data["requisites_"]["ogrn"]
+    site_settings.requisites_bank = data["requisites_"]["bank"]
+    site_settings.requisites_bik = data["requisites_"]["bik"]
+    site_settings.requisites_count = data["requisites_"]["count"]
+    site_settings.requisites_corr_count = data["requisites_"]["corr_count"]
+    site_settings.save()
+
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'site_name', 'domain_name', 'contacts_name', 'contacts_tel', 'contacts_address']
+    list_display = ['pk', 'site_name', 'domain_name', 'token', 'contacts_name', 'contacts_tel', 'contacts_address']
     ordering = ['pk']
     search_fields = ['site_name', 'domain_name', 'contacts_name', 'contacts_tel', 'contacts_address']
     list_per_page = 30
-    actions = [deactivate, activate, copy_item, site_update]
+    actions = [deactivate, activate, copy_item, site_update, db_update]
     fieldsets = (
         (None, {
             'fields': ('site_name',)
