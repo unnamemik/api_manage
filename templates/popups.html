@@ -13,7 +13,7 @@
             <div class="popup__body">
                 <strong class="popup__title">Оставить заявку</strong>
                 <p class="popup__descr">Перезвоним Вам в ближайшее время</p>
-                <form action="" method="post" class="popup__form site-form"
+                <form action="{% url 'feedback' %}" method="post" class="popup__form site-form"
                       data-dev data-popup-message="#form-message" autocomplete="off">
                     {% csrf_token %}
                     <label for="popupName" class="popup__label">

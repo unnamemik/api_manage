@@ -171,3 +171,4 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ["time_create", 'active']
+    list_filter = ['requisites_company', 'region_what']

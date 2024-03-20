@@ -14,7 +14,7 @@ class SiteSettings(models.Model):
 
     project_name = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Имя проекта')
     domain_name = models.CharField(max_length=250, default=' ', null=True, blank=True, verbose_name='Домен')
-    region_what = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Регион, им. падеж')
+    region_what = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Регион')
     region_where = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Регион, род. падеж')
 
     document_head = models.TextField(default=' ', null=True, blank=True, verbose_name='Блок head')
