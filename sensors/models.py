@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.timezone import now
 
 
-# Create your models here.
 class Sensor(models.Model):
     """
     Задача
@@ -12,22 +11,18 @@ class Sensor(models.Model):
         ('Alarm!', 'Тревога!'),
         ('Online', 'Онлайн'),
     )
-    sensor_name = models.CharField(max_length=500, null=True, blank=True, default=' ', verbose_name='Имя элемента')
+    sensor_name = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Датчик')
     sensor_MAC = models.CharField(max_length=500, null=True, blank=True, default=' ', verbose_name='MAC-адрес датчика')
-    sensor_title = models.CharField(max_length=500, default=' ', null=True, blank=True, verbose_name='Датчик')
     sensor_description = models.TextField(default=' ', null=True, blank=True, verbose_name='Описание')
-    sensor_email = models.TextField(default=' ', null=True, blank=True, verbose_name='E-mail оповещения')
+    sensor_email = models.TextField(default=' ', null=True, blank=True, verbose_name='E-mail для оповещения')
+    sensor_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Unset', verbose_name='Текущий статус')
     sensor_time_create = models.CharField(max_length=21, default=now().strftime("%d/%m/%Y - %H:%M:%S"),
                                           null=True, blank=True, verbose_name='Время создания')
-    sensor_status_change = models.CharField(max_length=21, default=now().strftime("%d/%m/%Y - %H:%M:%S"),
-                                            null=True, blank=True, verbose_name='Время срабатывания')
-    sensor_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Unset', verbose_name='Статус')
     sensor_active = models.BooleanField(default=True, verbose_name='Активный')
 
     class Meta:
         verbose_name = 'Датчик'
         verbose_name_plural = 'Датчики'
-        ordering = ['sensor_name']
         db_table = 'sensor'
 
     def __str__(self):
@@ -36,6 +31,30 @@ class Sensor(models.Model):
     def get_summary(self):
         words = self.sensor_description.split()
         return f'{" ".join(words[:20])}...'
+
+
+class SensorLog(models.Model):
+    """
+    Задача
+    """
+    STATUS_CHOICES = (
+        ('Unset', 'Не определено'),
+        ('Alarm!', 'Тревога!'),
+        ('Online', 'Онлайн'),
+    )
+    sensor_name = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=True, verbose_name='Датчик')
+    sensor_MAC = models.CharField(max_length=500, null=True, blank=True, default=' ', verbose_name='MAC-адрес датчика')
+    sensor_status_change = models.CharField(max_length=21, default=now().strftime("%d/%m/%Y - %H:%M:%S"),
+                                            null=True, blank=True, verbose_name='Время срабатывания')
+    sensor_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Unset', verbose_name='Статус')
+
+    class Meta:
+        verbose_name = 'Логи датчика'
+        verbose_name_plural = 'Логи датчика'
+        db_table = 'sensor_log'
+
+    def __str__(self):
+        return f'{self.sensor_name}'
 
 
 class Client(models.Model):
@@ -54,7 +73,6 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
-        ordering = ['-client_time_create']
         db_table = 'client'
 
     def __str__(self):

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from sensors.black_list import BLACK_LIST_IP
 from sensors.forms import Feedback
-from sensors.models import Sensor, Client
+from sensors.models import Sensor, Client, SensorLog
 
 from django.core.mail import send_mail
 from django.utils.timezone import now
@@ -66,15 +66,23 @@ def sensor(request):
         return Response({'detail': 'Access denied!'})
     if request.method == 'POST':
         sensor_data = request.data
-        print(sensor_status := sensor_data['sensor_status'])
-        print(mac_address := sensor_data['mac_address'])
+        sensor_status = sensor_data['sensor_status']
+        mac_address = sensor_data['mac_address']
+        sensor = sensor_data['sensor']
         sensor_item = Sensor.objects.filter(sensor_MAC=mac_address).first()
         to_email = sensor_item.sensor_email
         if sensor_status != sensor_item.sensor_status:
             send_email_to_admin(
-                f"Сработал датчик {sensor_item.sensor_description}: статус {sensor_status}, устройство {mac_address}   ", to_email)
+                f"Сработал датчик {sensor_item.sensor_description}: статус {sensor_status}, устройство {mac_address}, датчик {sensor}   ", to_email)
+            print(sensor_data)
+            log_item = SensorLog.objects.create(
+                sensor_name=sensor_item,
+                sensor_MAC=sensor_item.sensor_MAC,
+                sensor_status_change=now().strftime("%d/%m/%Y - %H:%M:%S"),
+                sensor_status=sensor_status,
+            )
+            log_item.save()
         sensor_item.sensor_status = sensor_status
-        sensor_item.sensor_status_change = now().strftime("%d/%m/%Y - %H:%M:%S")
         sensor_item.save()
         return Response(sensor_data)
     return Response({'detail': 'connected'})
