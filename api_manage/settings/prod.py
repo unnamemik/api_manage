@@ -10,7 +10,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'mail.hosting.reg.ru'
 EMAIL_HOST_USER = 'api@izi-start.ru'
-EMAIL_HOST_PASSWORD = 'qB1rN1eM0wyL1pO4'
+EMAIL_HOST_PASSWORD = '#####'
 EMAIL_PORT = 587
 
 # Static files (CSS, JavaScript, Images)
